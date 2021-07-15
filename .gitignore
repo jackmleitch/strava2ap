@@ -2,3 +2,4 @@ notes/
 __pycache__/
 config.py
 stravaAPI.py
+.DS_Store
