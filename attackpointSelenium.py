@@ -109,7 +109,7 @@ def update_description(days=2):
                 + activity_title
                 + "\n"
                 + activity_description
-                + "\n<small>Description posted from Strava<a href='https://github.com/jackmleitch/strava2ap_auto'>strava2ap™</a></small>\n\n"
+                + "\n<small><a href='https://github.com/jackmleitch/strava2ap_auto'>strava2ap™</a></small>\n\n"
             )
         else:
             activity_post = (
