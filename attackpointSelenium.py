@@ -1,6 +1,7 @@
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 import json
+import os
 
 import config
 from utils import format_time, get_pace, get_dates
@@ -173,4 +174,6 @@ def update_description(days=2):
 
 
 if __name__ == "__main__":
-    update_description(days=3)
+    # from keep_alive import keep_alive
+    # keep_alive()
+    update_description()
