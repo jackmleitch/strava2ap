@@ -1,6 +1,7 @@
 import re
 import sys
 import math
+from datetime import datetime, timedelta
 
 
 def remove_emoji(string):
@@ -66,3 +67,17 @@ def get_pace(minutes, distance):
     pace_min = math.floor(pace)
     remainder = round(60 * (pace - pace_min))
     return f"{pace_min}:{remainder}"
+
+
+def get_dates(string=False, days=3, frmt="%Y-%m-%d"):
+    dates = []
+    for day in range(0, days):
+        yesterday = datetime.now() - timedelta(day)
+        yesterday = datetime.strftime(yesterday, frmt)
+        dates.append(yesterday)
+    return dates
+
+
+if __name__ == "__main__":
+    days = get_dates(days=5)
+    print(days)
