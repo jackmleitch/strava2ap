@@ -109,13 +109,13 @@ def update_description(days=2):
                 + activity_title
                 + "\n"
                 + activity_description
-                + "\n<small>Description posted from Strava&trade<small>\n\n"
+                + "\n<small>Description posted from Strava<a href='https://github.com/jackmleitch/strava2ap_auto'>strava2ap™</a></small>\n\n"
             )
         else:
             activity_post = (
                 "\n"
                 + activity_title
-                + "\n<small>Description posted from Strava&trade<small>\n\n"
+                + "\n<small><a href='https://github.com/jackmleitch/strava2ap_auto'>strava2ap™</a></small>\n\n"
             )
         descriptions.append(activity_post)
     # counters to keep track of thingf
@@ -173,4 +173,4 @@ def update_description(days=2):
 
 
 if __name__ == "__main__":
-    update_description(days=1)
+    update_description(days=3)
