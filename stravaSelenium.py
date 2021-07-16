@@ -3,21 +3,37 @@ from webdriver_manager.chrome import ChromeDriverManager
 from datetime import datetime
 import json
 import re
-import sys
+import os
 
 import config
 from utils import remove_emoji
 from stravaAPI import get_strava_run_ids
 
 
-def fetch_strava_activities(num_of_activities=6, format=False, driver=False):
+def fetch_strava_activities(
+    num_of_activities=6, format=False, driver=False, heroku=False
+):
     # website login details
     strava_login = config.STRAVA_LOGIN
-    # driver profile 
+    # driver profile
     options = webdriver.chrome.options.Options()
-    options.add_argument("--disable-extensions")
-    # use Chrome to access web (will update chrome driver if needed)
-    driver = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=options)
+    # options so that it runs on Heroku
+    if not heroku:
+        options.add_argument("--disable-extensions")
+        options.add_argument("--headless")
+        # use Chrome to access web (will update chrome driver if needed)
+        driver = webdriver.Chrome(
+            ChromeDriverManager().install(), chrome_options=options
+        )
+    else:
+        options.add_argument("--disable-extensions")
+        options.add_argument("--headless")
+        options.add_argument("--disable-dev-shm-usage")
+        options.add_argument("--no-sandbox")
+        options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+        driver = webdriver.Chrome(
+            executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=options
+        )
     # open the website
     driver.get("https://www.strava.com/login")
     # add username and password and login
