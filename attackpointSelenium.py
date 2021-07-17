@@ -47,6 +47,8 @@ def fetch_attackpoint_activities(days=3, format=False, driver=False):
                 f'//a[@href="/viewlog.jsp/user_13190/period-1/enddate-{day}"]'
             ).click()
         except:
+            no_activity = True
+        if no_activity:
             continue
         # click on edit buttons to edit each activity
         edit_button = driver.find_elements_by_xpath('//*[@title="Edit this entry"]')
