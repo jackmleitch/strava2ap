@@ -47,8 +47,6 @@ def fetch_attackpoint_activities(days=3, format=False, driver=False):
                 f'//a[@href="/viewlog.jsp/user_13190/period-1/enddate-{day}"]'
             ).click()
         except:
-            no_activity = True
-        if no_activity:
             continue
         # click on edit buttons to edit each activity
         edit_button = driver.find_elements_by_xpath('//*[@title="Edit this entry"]')
@@ -135,9 +133,12 @@ def update_description(days=2):
     # loop through days
     for day in get_dates(days=days):
         # go onto the days activity
-        check_activity_date = driver.find_element_by_xpath(
-            f'//a[@href="/viewlog.jsp/user_13190/period-1/enddate-{day}"]'
-        ).click()
+        try:
+            check_activity_date = driver.find_element_by_xpath(
+                f'//a[@href="/viewlog.jsp/user_13190/period-1/enddate-{day}"]'
+            ).click()
+        except:
+            continue
         edit_button = driver.find_elements_by_xpath('//*[@title="Edit this entry"]')
         # loop over each activity on given day
         for i, item in enumerate(edit_button):
